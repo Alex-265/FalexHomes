@@ -17,13 +17,14 @@ public class delHomeCompleter implements TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         Player player = (Player) sender;
-         if (fileHandler.GetHomesFromPlayer(player) == null) {
-             Bukkit.getLogger().info("Player has no Homes");
-             return null;
-         } else {
-             List<String> homes = new ArrayList<>(fileHandler.GetHomesFromPlayer(player));
-             homes.remove("default");
-             return homes;
-         }
-     }
+        if (fileHandler.GetHomesFromPlayer(player) == null) {
+            Bukkit.getLogger().info("Player has no Homes");
+            return null;
+        } else {
+            List<String> homes = new ArrayList<>(fileHandler.GetHomesFromPlayer(player));
+            homes.remove("default");
+            Bukkit.getLogger().info(homes.toString());
+            return homes;
+        }
+    }
  }
