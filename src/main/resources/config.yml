@@ -1,0 +1,18 @@
+
+# Set Messages
+Language:
+  Prefix: FalexHomes
+  HomeNotFound: Home not Found!
+  NotAPlayer: This Command can Only be executed by a Player!
+  InvalidArguments: Not enough Arguments!
+  InvalidName: This Name is Not avaliable for Use!
+  TooManyHomes: You have reached the maximum of homes!
+  NoPermission: You don't have the permission to do this!
+  NoHomesFound: You don't have any homes!
+  ToHomeTeleported: You have been Teleported to the home %HomeName%
+  HomeCreated: Your Home %HomeName% was created
+  HomeDeleted: %HomeName% was deleted!
+
+
+General:
+  MaxHomes: 10

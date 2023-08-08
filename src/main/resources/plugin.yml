@@ -1,0 +1,13 @@
+name: FalexHomes
+version: '${version}'
+main: at.alex.falexhomes.FalexHomes
+api-version: '1.20'
+commands:
+  home:
+    description: Teleport you to a home
+  sethome:
+    description: Create a new home
+  homelist:
+    description: Show a list of all your homes
+  delhome:
+    description: Delete a home
