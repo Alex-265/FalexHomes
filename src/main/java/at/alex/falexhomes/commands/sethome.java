@@ -46,6 +46,7 @@ public class sethome implements CommandExecutor {
                 sender.sendMessage(chatter.getMessageString("InvalidName"));
                 return true;
             }
+
             HomeName = args[0];
         } else {
             sender.sendMessage(chatter.getMessageString("InvalidArguments"));
