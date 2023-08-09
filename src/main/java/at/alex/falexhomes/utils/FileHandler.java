@@ -1,26 +1,25 @@
 package at.alex.falexhomes.utils;
 
 import at.alex.falexhomes.FalexHomes;
-import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffect;
+import org.checkerframework.checker.units.qual.C;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 public class FileHandler {
+    int homecount;
+    Chatter chatter = new Chatter();
     FalexHomes plugin = FalexHomes.getPlugin(FalexHomes.class);
     FileConfiguration homeConfig = plugin.getCustomConfig();
     public int MaxHomes = plugin.getConfig().getInt("General.MaxHomes");
     public void setHome(Location loc, Player player, String name) {
         homeConfig.set("Homes." + player.getUniqueId() + "." + name, loc);
-        Bukkit.getLogger().info(String.valueOf(MaxHomes) + " " + String.valueOf(CheckHomeCount(player)));
+        chatter.DebugLogger(String.valueOf(MaxHomes) + " " + String.valueOf(CheckHomeCount(player)));
         plugin.saveCustomConfig();
     }
     public int CheckHomeCount(Player player) {
@@ -46,7 +45,7 @@ public class FileHandler {
         } catch (Exception e) {
             return null;
         }
-        Bukkit.getLogger().info(playerhomes.stream().toString());
+        chatter.DebugLogger(playerhomes.stream().toString());
         return playerhomes.stream().toList();
     }
 
@@ -62,10 +61,22 @@ public class FileHandler {
     public boolean HomeExists(Player player, String name) {
         return homeConfig.contains("Homes." + player.getUniqueId() + "." + name);
     }
-    public String TeleportEffect = plugin.getConfig().getString("Teleportation-Effect.type".toUpperCase());
+    public boolean HasDefaultHome(Player player) {
+        return (homeConfig.contains("Homes." + player.getUniqueId() + ".default"));
+    }
+    public int GetTotalHomeCount(Player player) {
+        homecount = homecount + CheckHomeCount(player);
+        if (HasDefaultHome(player)) {
+            homecount++;
+        }
+        return homecount;
+    }
+
+    public String TeleportEffect = plugin.getConfig().getString("Teleportation-Effect.type");
     public int TeleportEffectDuartion = plugin.getConfig().getInt("Teleportation-Effect.duration");
     public int TelpeortEffectAmplifier = plugin.getConfig().getInt("Teleportation-Effect.amplifier");
 
-    public String TeleportSound = plugin.getConfig().getString("Teleportation-Sound.type".toUpperCase());
+    public String TeleportSound = plugin.getConfig().getString("Teleportation-Sound.type");
+
 
 }

@@ -1,14 +1,13 @@
 package at.alex.falexhomes;
 
-import at.alex.falexhomes.commands.delhome;
-import at.alex.falexhomes.commands.home;
-import at.alex.falexhomes.commands.homelist;
-import at.alex.falexhomes.commands.sethome;
+import at.alex.falexhomes.commands.*;
+import at.alex.falexhomes.listener.InventoryListener;
 import at.alex.falexhomes.tabcompleter.homeCompleter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.event.EventPriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -28,8 +27,9 @@ public final class FalexHomes extends JavaPlugin {
         getCommand("sethome").setExecutor(new sethome());
         getCommand("homelist").setExecutor(new homelist());
         getCommand("delhome").setExecutor(new delhome());
+        getCommand("homesgui").setExecutor(new wipalphahomegui());
         // Plugin startup logic
-
+        Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
     }
     public FileConfiguration getCustomConfig() {
         return this.customConfig;

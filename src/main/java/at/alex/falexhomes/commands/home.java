@@ -25,17 +25,16 @@ public class home implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        Bukkit.getLogger().info(String.valueOf(args.length));
+        chatter.DebugLogger(String.valueOf(args.length));
         if (args.length == 0) {
-            Bukkit.getLogger().info("No Args");
+            chatter.DebugLogger("No Args");
             if (!fileHandler.HomeExists(player, "default")) {
-                Bukkit.getLogger().info("Home doesnt exist");
+                chatter.DebugLogger("Home doesnt exist");
                 sender.sendMessage(chatter.getMessageString("HomeNotFound"));
                 return true;
             }
             homeName = "default";
         } else {
-            Bukkit.getLogger().info("Args");
             if (!fileHandler.HomeExists(player, args[0])) {
                 sender.sendMessage(chatter.getMessageString("HomeNotFound"));
                 return true;
@@ -43,16 +42,16 @@ public class home implements CommandExecutor {
             homeName = args[0];
         }
 
-        PotionEffectType effectType = PotionEffectType.getByName(fileHandler.TeleportEffect);
-        PotionEffect teleportationEffect = new PotionEffect(effectType, fileHandler.TeleportEffectDuartion, fileHandler.TelpeortEffectAmplifier, true,false);
+        PotionEffectType effectType = PotionEffectType.getByName(fileHandler.TeleportEffect.toUpperCase());
+        PotionEffect teleportationEffect = new PotionEffect(effectType, fileHandler.TeleportEffectDuartion, fileHandler.TelpeortEffectAmplifier, false,false);
+        player.addPotionEffect(teleportationEffect);
 
 
 
-
-
+        chatter.DebugLogger(homeName);
         player.teleport(fileHandler.GetLocationHome(player, homeName));
         String teleportmessage = chatter.getMessageString("ToHomeTeleported");
-        Sound sound = Sound.valueOf(fileHandler.TeleportSound);
+        Sound sound = Sound.valueOf(fileHandler.TeleportSound.toUpperCase());
         player.playSound(player.getLocation(),sound,1.0f,1.0f );
         sender.sendMessage(teleportmessage.replace("%HomeName%", homeName));
         return false;

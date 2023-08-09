@@ -29,9 +29,9 @@ public class sethome implements CommandExecutor {
         int maxHomes = fileHandler.MaxHomes;
         if (args.length != 0) {
             if (playerHomeCount >= maxHomes){
-                Bukkit.getLogger().info("Player has too many Homes");
+                chatter.DebugLogger("Player has too many Homes");
                 if (!player.hasPermission(new Permission("FalexHomes.admin.bypassHomeLimit", PermissionDefault.FALSE))) {
-                    Bukkit.getLogger().info("Player does not have permission");
+                    chatter.DebugLogger("Player does not have permission");
                     sender.sendMessage(chatter.getMessageString("TooManyHomes"));
                     return true;
                 }

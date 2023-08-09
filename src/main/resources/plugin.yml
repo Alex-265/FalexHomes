@@ -11,3 +11,5 @@ commands:
     description: Show a list of all your homes
   delhome:
     description: Delete a home
+  homesgui:
+    description: Open a GUI with all homes

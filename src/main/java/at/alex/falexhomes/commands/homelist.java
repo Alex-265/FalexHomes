@@ -28,7 +28,9 @@ public class homelist implements CommandExecutor {
             return false;
         }
         String message = listToMessage(fileHandler.GetHomesFromPlayer(player));
-        player.sendMessage("Your homes: " + message);
+        player.sendMessage(chatter.getMessageString("HomeListMessage").replace("%listhomes%", message));
+        String statisticmessage = "(" + fileHandler.CheckHomeCount(player) + "/" + fileHandler.MaxHomes + ")";
+        player.sendMessage(chatter.getMessageString("HomeListStatistic").replace("%Statistic%", statisticmessage));
 
         return false;
     }

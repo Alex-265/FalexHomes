@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 public class Chatter {
     Boolean argsa;
     FalexHomes plugin = FalexHomes.getPlugin(FalexHomes.class);
+    private final boolean DebugMode = plugin.getConfig().getBoolean("Advanced.Debug");
 
     /*
     Used to get a Message from config.yml
@@ -17,7 +18,7 @@ public class Chatter {
         if (b.length == 0) {
             argsa = true;
         } else if (b.length == 1) {
-            if (b[0] == false) {
+            if (!b[0]) {
                 argsa = false;
             } else {
                 argsa = true;
@@ -27,5 +28,10 @@ public class Chatter {
             return "[" + plugin.getConfig().getString("Language.Prefix") + "] " + plugin.getConfig().getString("Language." + name);
         }
         return plugin.getConfig().getString("Language." + name);
+    }
+    public void DebugLogger(String message) {
+        if (DebugMode) {
+            Bukkit.getLogger().info(getMessageString("Prefix", false) + " " + message);
+        }
     }
 }

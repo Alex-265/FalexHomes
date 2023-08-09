@@ -1,5 +1,6 @@
 package at.alex.falexhomes.tabcompleter;
 
+import at.alex.falexhomes.utils.Chatter;
 import at.alex.falexhomes.utils.FileHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -14,17 +15,18 @@ import java.util.List;
 import java.util.Set;
 
 public class homeCompleter implements TabCompleter {
+    Chatter chatter = new Chatter();
     FileHandler fileHandler = new FileHandler();
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         Player player = (Player) sender;
         if (fileHandler.GetHomesFromPlayer(player) == null) {
-            Bukkit.getLogger().info("Player has no Homes");
+            chatter.DebugLogger("Player has no Homes");
             return null;
         } else {
             List<String> homes = new ArrayList<>(fileHandler.GetHomesFromPlayer(player));
             homes.remove("default");
-            Bukkit.getLogger().info(homes.toString());
+            chatter.DebugLogger(homes.toString());
             return homes;
         }
     }
