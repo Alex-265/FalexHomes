@@ -20,3 +20,8 @@
 ## Links
 - [Repository](https://github.com/Alex-265/FalexHomes)
 - [Issue Tracker](https://github.com/Alex-265/FalexHomes/issues)
+
+- [Modrinth](https://modrinth.com/plugin/falexhomes)
+- [Hangar](https://hangar.papermc.io/alex265/FalexHomes)
+- [SpigotMC](https://www.spigotmc.org/resources/falexhomes.111871/)
+- [CurseForge](https://www.curseforge.com/minecraft/bukkit-plugins/falexhomes)
