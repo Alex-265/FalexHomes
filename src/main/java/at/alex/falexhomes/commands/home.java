@@ -41,10 +41,10 @@ public class home implements CommandExecutor {
             homeName = args[0];
         }
 
-
+        PotionEffectType effectType = PotionEffectType.getByName(fileHandler.TeleportEffect);
+        PotionEffect teleportationEffect = new PotionEffect(effectType, fileHandler.TeleportEffectDuartion, fileHandler.TelpeortEffectAmplifier, true,false);
 
         player.teleport(fileHandler.GetLocationHome(player, homeName));
-
         String teleportmessage = chatter.getMessageString("ToHomeTeleported");
 
         sender.sendMessage(teleportmessage.replace("%HomeName%", homeName));

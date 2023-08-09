@@ -62,5 +62,8 @@ public class FileHandler {
     public boolean HomeExists(Player player, String name) {
         return homeConfig.contains("Homes." + player.getUniqueId() + "." + name);
     }
+    public String TeleportEffect = plugin.getConfig().getString("Teleportation-Effect.type".toUpperCase());
+    public int TeleportEffectDuartion = plugin.getConfig().getInt("Teleportation-Effect.duration");
+    public int TelpeortEffectAmplifier = plugin.getConfig().getInt("Teleportation-Effect.amplifier");
 
 }

@@ -15,3 +15,9 @@ Language:
 
 General:
   MaxHomes: 10
+
+
+Teleportation-Effect:
+  type: blindness
+  duaration: 60
+  apmlifier: 255
