@@ -21,3 +21,6 @@ Teleportation-Effect:
   type: blindness
   duaration: 60
   apmlifier: 255
+
+Teleportation-Sound:
+  type:

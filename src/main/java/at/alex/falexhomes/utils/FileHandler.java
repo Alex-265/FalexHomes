@@ -66,4 +66,6 @@ public class FileHandler {
     public int TeleportEffectDuartion = plugin.getConfig().getInt("Teleportation-Effect.duration");
     public int TelpeortEffectAmplifier = plugin.getConfig().getInt("Teleportation-Effect.amplifier");
 
+    public String TeleportSound = plugin.getConfig().getString("Teleportation-Sound.type".toUpperCase());
+
 }
