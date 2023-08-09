@@ -23,4 +23,4 @@ Teleportation-Effect:
   apmlifier: 255
 
 Teleportation-Sound:
-  type:
+  type: ENTITY_CAT_HISS

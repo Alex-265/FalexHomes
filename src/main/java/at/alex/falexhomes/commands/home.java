@@ -7,6 +7,7 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -47,10 +48,12 @@ public class home implements CommandExecutor {
 
 
 
+
+
         player.teleport(fileHandler.GetLocationHome(player, homeName));
         String teleportmessage = chatter.getMessageString("ToHomeTeleported");
         Sound sound = Sound.valueOf(fileHandler.TeleportSound);
-        player.playSound(player.getLocation(),sound,0.1f,0.1f );
+        player.playSound(player.getLocation(),sound,1.0f,1.0f );
         sender.sendMessage(teleportmessage.replace("%HomeName%", homeName));
         return false;
     }
