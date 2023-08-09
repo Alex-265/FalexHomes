@@ -10,7 +10,7 @@ Language:
   NoHomesFound: You don't have any homes!
   ToHomeTeleported: You have been Teleported to the home %HomeName%
   HomeCreated: Your Home %HomeName% was created
-  HomeDeleted: %HomeName% was deleted!
+  HomeDeleted: Home %HomeName% was deleted!
 
 
 General:
