@@ -27,7 +27,6 @@ public final class FalexHomes extends JavaPlugin {
         getCommand("sethome").setExecutor(new sethome());
         getCommand("homelist").setExecutor(new homelist());
         getCommand("delhome").setExecutor(new delhome());
-        getCommand("homesgui").setExecutor(new wipalphahomegui());
         // Plugin startup logic
         Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
     }
