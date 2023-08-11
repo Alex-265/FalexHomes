@@ -13,24 +13,25 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class InventoryListener implements Listener {
+    private final int ITEMS_PER_PAGE = 45;
     FileHandler fileHandler = new FileHandler();
 
     @EventHandler
-    public void onInvClick(InventoryClickEvent event){
-        if(event.getCurrentItem() == null) return;
-        if(event.getView().getTitle() == "Homes"){
+    public void onInvClick(InventoryClickEvent event) {
+        if (event.getCurrentItem() == null) return;
+        if (event.getView().getTitle() == "Homes") {
             Player player = (Player) event.getWhoClicked();
             event.setCancelled(true);
             if (event.getClick().isLeftClick()) {
                 player.teleport(fileHandler.GetLocationHome(player, event.getCurrentItem().getItemMeta().getDisplayName()));
             } else if (event.getClick().isRightClick()) {
                 String homename = event.getCurrentItem().getItemMeta().getDisplayName();
-                Inventory configInventory = Bukkit.createInventory(null, 1*9,"Configure " + homename);
+                Inventory configInventory = Bukkit.createInventory(null, 1 * 9, "Configure Home");
                 configInventory.setItem(8, new ItemBuilder(Material.BARRIER).setDisplayname("Delete " + homename).setLore("§7LMB to Delete").build());
+                configInventory.setItem(5, new ItemBuilder(Material.BRICK).setDisplayname("Choose Icon").build());
                 player.openInventory(configInventory);
             }
+
         }
-
     }
-
 }

@@ -2,6 +2,7 @@ package at.alex.falexhomes.utils;
 
 import at.alex.falexhomes.FalexHomes;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class Chatter {
     Boolean argsa;
@@ -34,4 +35,7 @@ public class Chatter {
             Bukkit.getLogger().info(getMessageString("Prefix", false) + " " + message);
         }
     }
+
+
+
 }
