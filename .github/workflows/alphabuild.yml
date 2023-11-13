@@ -9,9 +9,9 @@ name: Test Alpha Build
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "guitest" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "guitest" ]
 
 permissions:
   contents: read
