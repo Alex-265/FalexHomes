@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class delHomeCompleter implements TabCompleter {
@@ -19,15 +20,29 @@ public class delHomeCompleter implements TabCompleter {
     FileHandler fileHandler = new FileHandler();
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        List<String> homes;
         Player player = (Player) sender;
         if (fileHandler.GetHomesFromPlayer(player) == null) {
             chatter.DebugLogger("Player has no Homes");
             return null;
-        } else {
-            List<String> homes = new ArrayList<>(fileHandler.GetHomesFromPlayer(player));
-            homes.remove("default");
-            chatter.DebugLogger(homes.toString());
-            return homes;
         }
+        homes = new ArrayList<>(fileHandler.GetHomesFromPlayer(player));
+        homes.remove("default");
+        chatter.DebugLogger(homes.toString());
+        String input = args[0].toLowerCase();
+
+        List<String> completions = null;
+        for (String s : homes) {
+            if (s.startsWith(input)) {
+
+                if (completions == null) {
+                    completions = new ArrayList();
+                }
+                completions.add(s);
+            }
+        }
+        if (completions != null)
+            Collections.sort(completions);
+        return completions;
     }
  }

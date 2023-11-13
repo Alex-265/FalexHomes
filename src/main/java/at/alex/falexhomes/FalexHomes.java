@@ -1,6 +1,7 @@
 package at.alex.falexhomes;
 
 import at.alex.falexhomes.commands.*;
+import at.alex.falexhomes.tabcompleter.delHomeCompleter;
 import at.alex.falexhomes.tabcompleter.homeCompleter;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -24,6 +25,7 @@ public final class FalexHomes extends JavaPlugin {
         getCommand("sethome").setExecutor(new sethome());
         getCommand("homelist").setExecutor(new homelist());
         getCommand("delhome").setExecutor(new delhome());
+        getCommand("delhome").setTabCompleter(new delHomeCompleter());
         // Plugin startup logic
     }
     public FileConfiguration getCustomConfig() {
