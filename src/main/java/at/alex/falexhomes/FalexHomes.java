@@ -3,20 +3,31 @@ package at.alex.falexhomes;
 import at.alex.falexhomes.commands.*;
 import at.alex.falexhomes.tabcompleter.delHomeCompleter;
 import at.alex.falexhomes.tabcompleter.homeCompleter;
+import at.alex.falexhomes.utils.PlayerTime;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public final class FalexHomes extends JavaPlugin {
+public final class FalexHomes extends JavaPlugin implements Listener {
     private File customConfigFile;
     private FileConfiguration customConfig;
+    public static List<PlayerTime> homeCooldown = new ArrayList<>();
 
     @Override
     public void onEnable() {
+        Bukkit.getPluginManager().registerEvents(this, (Plugin)this);
         createCustomConfig();
         getConfig().options().copyDefaults(true);
         saveConfig();

@@ -13,10 +13,13 @@ Language:
   HomeDeleted: Home %HomeName% was deleted!
   HomeListStatistic: Used %Statistic%
   HomeListMessage: Your Homes %listhomes%
+  Cooldown: You have to wait %time% seconds
 
 General:
   MaxHomes: 5
 
+Teleportation:
+  cooldown: 20
 Teleportation-Effect:
   type: blindness
   duaration: 60

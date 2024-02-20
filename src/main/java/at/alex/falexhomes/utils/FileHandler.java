@@ -77,6 +77,7 @@ public class FileHandler {
     public int TelpeortEffectAmplifier = plugin.getConfig().getInt("Teleportation-Effect.amplifier");
 
     public String TeleportSound = plugin.getConfig().getString("Teleportation-Sound.type");
+    public int teleportCooldown = plugin.getConfig().getInt("Teleportation.cooldown");
 
 
 }

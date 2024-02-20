@@ -18,20 +18,20 @@ public class homeCompleter implements TabCompleter {
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        chatter.DebugLogger(Arrays.stream(args).toList().toString());
-        chatter.DebugLogger(String.valueOf(Arrays.stream(args).count()));
+        // chatter.DebugLogger(Arrays.stream(args).toList().toString());
+        // chatter.DebugLogger(String.valueOf(Arrays.stream(args).count()));
         List<String> homes;
         Player player = (Player) sender;
         if (fileHandler.GetHomesFromPlayer(player) == null) {
-            chatter.DebugLogger("Player has no Homes");
-            return null;
+            // chatter.DebugLogger("Player has no Homes");
+            return new ArrayList<>();
         }
         if (Arrays.stream(args).count() > 1) {
-            return null;
+            return new ArrayList<>();
         }
         homes = new ArrayList<>(fileHandler.GetHomesFromPlayer(player));
         homes.remove("default");
-        chatter.DebugLogger(homes.toString());
+        // chatter.DebugLogger(homes.toString());
         String input = args[0].toLowerCase();
 
         List<String> completions = null;
@@ -46,6 +46,9 @@ public class homeCompleter implements TabCompleter {
         }
         if (completions != null)
             Collections.sort(completions);
+        else {
+            return new ArrayList<>();
+        }
         return completions;
     }
 }
