@@ -8,25 +8,30 @@ Language:
   TooManyHomes: You have reached the maximum of homes!
   NoPermission: You don't have the permission to do this!
   NoHomesFound: You don't have any homes!
-  ToHomeTeleported: You have been Teleported to the home %HomeName%
+  ToHomeTeleported: You have been Teleported to %HomeName%
   HomeCreated: Your Home %HomeName% was created
   HomeDeleted: Home %HomeName% was deleted!
   HomeListStatistic: Used %Statistic%
   HomeListMessage: Your Homes %listhomes%
   Cooldown: You have to wait %time% seconds
+  GettingTeleportedIn: You are getting teleported in %time% seconds. Dont move!
+  AlreadyTeleporting: You are already teleporting!
+  TeleportMoved: You have moved!
 
 General:
   MaxHomes: 5
 
 Teleportation:
   cooldown: 20
+  waitTime: 75
 Teleportation-Effect:
   type: blindness
   duaration: 60
   apmlifier: 255
 
 Teleportation-Sound:
-  type: ENTITY_CAT_HISS
+  pre: BLOCK_PORTAL_TRIGGER
+  type: BLOCK_NOTE_BLOCK_BELL
 
 Advanced:
   Debug: false

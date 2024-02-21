@@ -6,6 +6,7 @@ import at.alex.falexhomes.utils.FileHandler;
 import at.alex.falexhomes.utils.PlayerTime;
 import at.alex.falexhomes.utils.TimeUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -63,20 +64,36 @@ public class home implements CommandExecutor {
             }
             FalexHomes.homeCooldown.remove(indexPlayer);
         }
+        if (FalexHomes.tpWait.contains(player)) {
+            sender.sendMessage(chatter.getMessageString("AlreadyTeleporting"));
+            return true;
+        }
 
-
-        PotionEffectType effectType = PotionEffectType.getByName(fileHandler.TeleportEffect.toUpperCase());
-        PotionEffect teleportationEffect = new PotionEffect(effectType, fileHandler.TeleportEffectDuartion, fileHandler.TelpeortEffectAmplifier, false,false);
+        final PotionEffectType effectType = PotionEffectType.getByName(fileHandler.TeleportEffect.toUpperCase());
+        final PotionEffect teleportationEffect = new PotionEffect(effectType, fileHandler.TeleportEffectDuartion, fileHandler.TelpeortEffectAmplifier, false,false);
         player.addPotionEffect(teleportationEffect);
         FalexHomes.homeCooldown.add(new PlayerTime(player.getUniqueId().toString(), TimeUtils.getCurrentTime()));
+        final Location tpTo = fileHandler.GetLocationHome(player, homeName);
+        final Player finalPlayer = player;
+        //chatter.DebugLogger(homeName);
+        final String teleportmessage = chatter.getMessageString("ToHomeTeleported");
+        final Sound sound = Sound.valueOf(fileHandler.TeleportSound.toUpperCase());
+        sender.sendMessage(chatter.getMessageString("GettingTeleportedIn").replace("%time%", String.valueOf(fileHandler.teleportWaitTime / 20)));
+        player.playSound(player.getLocation(), Sound.valueOf(fileHandler.PreTeleportSound), 1.0f, 1.0f);
+        FalexHomes.tpWait.add(player);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(FalexHomes.getPlugin(FalexHomes.class
+        ), new Runnable() {
+                @Override
+                public void run() {
+                    if (FalexHomes.tpWait.contains(finalPlayer)) {
+                        finalPlayer.teleport(tpTo);
+                        finalPlayer.playSound(finalPlayer.getLocation(),sound,1.0f,1.0f );
+                        finalPlayer.sendMessage(teleportmessage.replace("%HomeName%", homeName));
+                    }
+                    FalexHomes.tpWait.remove(finalPlayer);
 
-
-        chatter.DebugLogger(homeName);
-        player.teleport(fileHandler.GetLocationHome(player, homeName));
-        String teleportmessage = chatter.getMessageString("ToHomeTeleported");
-        Sound sound = Sound.valueOf(fileHandler.TeleportSound.toUpperCase());
-        player.playSound(player.getLocation(),sound,1.0f,1.0f );
-        sender.sendMessage(teleportmessage.replace("%HomeName%", homeName));
+                }
+            }, fileHandler.teleportWaitTime);
         return false;
     }
 }

@@ -1,8 +1,12 @@
 package at.alex.falexhomes;
 
-import at.alex.falexhomes.commands.*;
+import at.alex.falexhomes.commands.delhome;
+import at.alex.falexhomes.commands.home;
+import at.alex.falexhomes.commands.homelist;
+import at.alex.falexhomes.commands.sethome;
 import at.alex.falexhomes.tabcompleter.delHomeCompleter;
 import at.alex.falexhomes.tabcompleter.homeCompleter;
+import at.alex.falexhomes.utils.Chatter;
 import at.alex.falexhomes.utils.PlayerTime;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -11,7 +15,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,6 +28,7 @@ public final class FalexHomes extends JavaPlugin implements Listener {
     private File customConfigFile;
     private FileConfiguration customConfig;
     public static List<PlayerTime> homeCooldown = new ArrayList<>();
+    public static List<Player> tpWait = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -69,6 +74,14 @@ public final class FalexHomes extends JavaPlugin implements Listener {
             getPlugin(this.getClass()).getCustomConfig().save(customConfigFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @EventHandler
+    public void onMoveEvent(PlayerMoveEvent event) {
+        if (tpWait.contains(event.getPlayer())) {
+            event.getPlayer().sendMessage("You have moved!");
+            tpWait.remove(event.getPlayer());
         }
     }
 }
