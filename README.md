@@ -25,3 +25,7 @@
 - [Hangar](https://hangar.papermc.io/alex265/FalexHomes)
 - [SpigotMC](https://www.spigotmc.org/resources/falexhomes.111871/)
 - [CurseForge](https://www.curseforge.com/minecraft/bukkit-plugins/falexhomes)
+
+## How to build
+- Install Java 17
+- Run (./gradlew.bat(windows) gradlew(Linux,Macos)) build
