@@ -7,6 +7,7 @@ import at.alex.falexhomes.commands.sethome;
 import at.alex.falexhomes.tabcompleter.delHomeCompleter;
 import at.alex.falexhomes.tabcompleter.homeCompleter;
 import at.alex.falexhomes.utils.Chatter;
+import at.alex.falexhomes.utils.MoveUtils;
 import at.alex.falexhomes.utils.PlayerTime;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -79,7 +80,7 @@ public final class FalexHomes extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onMoveEvent(PlayerMoveEvent event) {
-        if (tpWait.contains(event.getPlayer())) {
+        if (tpWait.contains(event.getPlayer()) && MoveUtils.hasPlayerMoved(event)) {
             event.getPlayer().sendMessage("You have moved!");
             tpWait.remove(event.getPlayer());
         }

@@ -70,7 +70,7 @@ public class home implements CommandExecutor {
         }
 
         final PotionEffectType effectType = PotionEffectType.getByName(fileHandler.TeleportEffect.toUpperCase());
-        final PotionEffect teleportationEffect = new PotionEffect(effectType, fileHandler.TeleportEffectDuartion, fileHandler.TelpeortEffectAmplifier, false,false);
+        final PotionEffect teleportationEffect = new PotionEffect(effectType, fileHandler.TeleportEffectDuartion, fileHandler.TelepeortEffectAmplifier, false,false);
         player.addPotionEffect(teleportationEffect);
         FalexHomes.homeCooldown.add(new PlayerTime(player.getUniqueId().toString(), TimeUtils.getCurrentTime()));
         final Location tpTo = fileHandler.GetLocationHome(player, homeName);
