@@ -9,7 +9,8 @@ name: Test Alpha Build
 
 on:
   push:
-    branches: [ "master", "guitest" ]
+    branches:
+      - '**'
   pull_request:
     branches: [ "master", "guitest" ]
 
