@@ -48,7 +48,6 @@ public class home implements CommandExecutor {
             homeName = args[0];
         }
         chatter.DebugLogger("CURRENT TIME: " + String.valueOf(TimeUtils.getCurrentTime()));
-        boolean playerExistsInCooldown = false;
         int indexPlayer = -1;
         for (PlayerTime i : FalexHomes.homeCooldown) {
             if (i.getPlayerUUID().equals(player.getUniqueId().toString())) {
@@ -59,7 +58,7 @@ public class home implements CommandExecutor {
             PlayerTime timePlayer = FalexHomes.homeCooldown.get(indexPlayer);
             int timeSinceLast = TimeUtils.getCurrentTime() - timePlayer.getTime();
             if (timeSinceLast < fileHandler.teleportCooldown) {
-                sender.sendMessage(chatter.getMessageString("Cooldown").replace("%time%", String.valueOf(20 - timeSinceLast)));
+                sender.sendMessage(chatter.getMessageString("Cooldown").replace("%time%", String.valueOf(fileHandler.teleportCooldown - timeSinceLast)));
                 return true;
             }
             FalexHomes.homeCooldown.remove(indexPlayer);
