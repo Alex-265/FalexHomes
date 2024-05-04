@@ -1,6 +1,15 @@
 # User-specific stuff
 .idea/
 
+# Vscode
+launch.json
+settings.json
+
+
+# IDX (Google)
+.idk/
+*.nix
+
 *.iml
 *.ipr
 *.iws

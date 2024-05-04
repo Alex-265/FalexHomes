@@ -2,12 +2,10 @@ package at.alex.falexhomes.tabcompleter;
 
 import at.alex.falexhomes.utils.Chatter;
 import at.alex.falexhomes.utils.FileHandler;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -42,7 +40,7 @@ public class delHomeCompleter implements TabCompleter {
             if (s.startsWith(input)) {
 
                 if (completions == null) {
-                    completions = new ArrayList();
+                    completions = new ArrayList<>();
                 }
                 completions.add(s);
             }

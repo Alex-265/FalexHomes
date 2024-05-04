@@ -6,7 +6,6 @@ import at.alex.falexhomes.commands.homelist;
 import at.alex.falexhomes.commands.sethome;
 import at.alex.falexhomes.tabcompleter.delHomeCompleter;
 import at.alex.falexhomes.tabcompleter.homeCompleter;
-import at.alex.falexhomes.utils.Chatter;
 import at.alex.falexhomes.utils.MoveUtils;
 import at.alex.falexhomes.utils.PlayerTime;
 import org.bukkit.Bukkit;
@@ -43,7 +42,6 @@ public final class FalexHomes extends JavaPlugin implements Listener {
         getCommand("homelist").setExecutor(new homelist());
         getCommand("delhome").setExecutor(new delhome());
         getCommand("delhome").setTabCompleter(new delHomeCompleter());
-        // Plugin startup logic
     }
     public FileConfiguration getCustomConfig() {
         return this.customConfig;

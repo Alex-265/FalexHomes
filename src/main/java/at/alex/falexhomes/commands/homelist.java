@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
 import java.util.List;
 
 public class homelist implements CommandExecutor {
@@ -16,7 +15,6 @@ public class homelist implements CommandExecutor {
     FileHandler fileHandler = new FileHandler();
 
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        String HomeName;
         if (!(sender instanceof Player)) {
             sender.sendMessage(chatter.getMessageString("NotAPlayer"));
             return true;

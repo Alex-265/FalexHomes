@@ -3,9 +3,9 @@ package at.alex.falexhomes.utils;
 
 public class PlayerTime {
     private String playerUUID;
-    private int gameTime;
+    private long gameTime;
 
-    public PlayerTime(String playerName, int gameTime) {
+    public PlayerTime(String playerName, long gameTime) {
         this.playerUUID = playerName;
         this.gameTime = gameTime;
     }
@@ -14,7 +14,7 @@ public class PlayerTime {
         return playerUUID;
     }
 
-    public int getTime() {
+    public long getTime() {
         return gameTime;
     }
 
@@ -22,7 +22,7 @@ public class PlayerTime {
         this.playerUUID = playerName;
     }
 
-    public void setTime(int gameTime) {
+    public void setTime(long gameTime) {
         this.gameTime = gameTime;
     }
 }

@@ -5,6 +5,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import net.kyori.adventure.text.Component;
+
 import java.util.Arrays;
 
 public class ItemBuilder {
@@ -15,17 +17,19 @@ public class ItemBuilder {
         itemMeta = itemStack.getItemMeta();
     }
     public ItemBuilder setDisplayname(String s){
-        itemMeta.setDisplayName(s);
+        itemMeta.displayName(Component.text(s));
         return this;
     }
     public ItemBuilder setLocalizedName(String s){
-        itemMeta.setLocalizedName(s);
+        itemMeta.displayName(Component.text(s));
         return this;
     }
-    public ItemBuilder setLore(String... s){
-        itemMeta.setLore(Arrays.asList(s));
+    public ItemBuilder setLore(String... s) {
+        itemMeta.lore(Arrays.stream(s).map(Component::text).toList());
         return this;
     }
+
+
     public ItemBuilder setUnbreakable(boolean s){
         itemMeta.setUnbreakable(s);
         return this;

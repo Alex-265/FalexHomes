@@ -11,13 +11,10 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
-
-import java.security.KeyStore;
 
 public class home implements CommandExecutor {
     private String homeName;
@@ -56,7 +53,7 @@ public class home implements CommandExecutor {
         }
         if (indexPlayer != -1) {
             PlayerTime timePlayer = FalexHomes.homeCooldown.get(indexPlayer);
-            int timeSinceLast = TimeUtils.getCurrentTime() - timePlayer.getTime();
+            long timeSinceLast = TimeUtils.getCurrentTime() - timePlayer.getTime();
             if (timeSinceLast < fileHandler.teleportCooldown) {
                 sender.sendMessage(chatter.getMessageString("Cooldown").replace("%time%", String.valueOf(fileHandler.teleportCooldown - timeSinceLast)));
                 return true;
